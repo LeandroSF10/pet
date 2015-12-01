@@ -1,0 +1,3 @@
+<h1> Pets cadastrados:
+    $forall Entity pid pet <- listaP
+        <p> #{petNome pet} <br>
