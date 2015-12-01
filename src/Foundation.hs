@@ -55,7 +55,7 @@ isAdmin = do
 
 isUser = do
     mu <- lookupSession "_ID"
-    return $ case mu of
+    return $ case mu of        
         Nothing -> AuthenticationRequired
         Just _ -> Authorized
 
