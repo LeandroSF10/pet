@@ -1,0 +1,3 @@
+<h1> Servicos cadastrados: <br>
+    $forall Entity pid srv <- listaS
+        <table border=1px><tr><td> #{servicoNome srv} <td> #{servicoPreco srv}

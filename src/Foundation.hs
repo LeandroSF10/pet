@@ -23,12 +23,11 @@ Pet
    
 Servico
     nome Text
+    preco Double
     
 PetServ
     petid PetId
     servicoid ServicoId
-
-
 |]
 
 mkYesodData "Sitio" pRoutes
@@ -44,6 +43,7 @@ instance Yesod Sitio where
     authRoute _ = Just $ LoginR
     isAuthorized LoginR _ = return Authorized
     isAuthorized AdminR _ = isAdmin
+    isAuthorized ServicoR _ = isAdmin
     isAuthorized _ _ = isUser
 
 isAdmin = do
@@ -56,6 +56,7 @@ isAdmin = do
 isUser = do
     mu <- lookupSession "_ID"
     return $ case mu of        
+--        Nothing -> Authorized
         Nothing -> AuthenticationRequired
         Just _ -> Authorized
 

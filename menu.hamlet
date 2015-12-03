@@ -1,0 +1,13 @@
+<h1 style="text-align:center">Menu de navegação<br><br>
+
+    <div style="text-align:left">
+     <a href="/">Home<br><br>
+     <a href="/pet">Cadastre seu pet =)<br><br>
+     <a href="/serv">Administrador, cadastre um serviço aqui!<br><br>
+     <a href="/listar"> Pets Cadastrados <br><br>
+     <a href="/listS"> Servicos<br><br>
+     <a href="/petServ">Agende servico(s) para seu pet!!!<br><br>
+     <a href="/static">Static<br><br>
+     <a href="/login">Login<br><br>
+     <a href="/admin">Administrador<br><br>
+     <a href="/bye">Sair 
