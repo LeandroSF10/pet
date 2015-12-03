@@ -20,7 +20,10 @@ widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Text -> Widget
 widgetForm x enctype widget y val = do
      msg <- getMessage
      $(whamletFile "form.hamlet")
-     toWidget $(luciusFile "teste.lucius")
+     toWidgetHead
+        [hamlet|
+            <link href=@{FaviconR} rel="shortcut icon" sizes="32x32" type="img/ico" />
+        |] >> toWidget $(luciusFile "teste.lucius")
 
 formPet :: Form Pet
 formPet = renderDivs $ Pet <$>
@@ -66,31 +69,14 @@ getPetServR = do
 --getImgR = defaultLayout [whamlet| 
 --    <img src=@{StaticR empolgou_jpg}> 
 --apaguei a tag de fechamento do whamlet aqui!!!
-{-
-getWelcomeR :: Handler Html
-getWelcomeR = do
-     usr <- lookupSession "_ID"
-     defaultLayout [whamlet|
-        $maybe m <- usr
-            <h1> Welcome #{m}
-                <ul>
-                    <a href="/serv">Cadastro de servicos<br/><br/>
-                    <a href=@{ListPetR}>Listar pets<br/><br/>
-                    <a href=@{StaticR}>Static<br/><br/>
-                    <a href=@{PetR}>Cadastrar Pet<br/><br/> 
-                    <a href=@{PetServR}>Agendar Servico para seu pet!<br/><br/>
-                    <a href=@{ListarServR}>Listar servicos<br/><br/>
-                    <a href=@{LoginR}>Login<br/><br/>
-                    <a href=@{WelcomeR}>Welcome<br/><br/>
-                    <a href=@{ByeR}>Bye!!<br/><br/>
-                    <a href=@{AdminR}>Admin<br/><br/> 
-     |]
--}
 
 getWelcomeR :: Handler Html
 getWelcomeR = do
     usr <- lookupSession "_ID"
-    defaultLayout $(whamletFile "menu.hamlet")
+    defaultLayout $ toWidgetHead
+        [hamlet|
+    <link href=@{FaviconR} rel="shortcut icon" sizes="32x32" type="img/ico" />
+        |] >> $(whamletFile "menu.hamlet")
 
 getLoginR :: Handler Html
 getLoginR = do
@@ -151,6 +137,10 @@ getListarServR :: Handler Html
 getListarServR = do
     listaS <- runDB $ selectList [] [Asc ServicoNome]
     defaultLayout $(whamletFile "listS.hamlet")
+
+getFaviconR :: Handler()
+getFaviconR = sendFile "img/ico" "favicon.ico"
+
 
 getByeR :: Handler Html
 getByeR = do

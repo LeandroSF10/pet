@@ -11,6 +11,8 @@ pRoutes = [parseRoutes|
    /listar ListPetR GET
    /listS ListarServR GET
    /static StaticR Static getStatic
+--   /img ImgR Static getStatic
+   /favicon FaviconR GET
 --   /ima ImgR GET
    /login LoginR GET POST
    / WelcomeR GET
